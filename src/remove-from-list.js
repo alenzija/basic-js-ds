@@ -1,6 +1,6 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Given a singly linked list of integers l and an integer k,
@@ -11,7 +11,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * @return {List}
  *
  * @example
- * For l = [3, 1, 2, 3, 4, 5] and k = 3,
+ l = [3, 1, 2, 3, 4, 5] and k = 3,
  * the output should be [1, 2, 4, 5]
  *
  * Singly - linked lists are already defined using interface
@@ -22,9 +22,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function removeKFromList(l, k) {
+  let current=l;
+  if (current.next){
+    prev=current;
+    current=current.next;
+    while(current.next){
+      if (current.value === k){
+        prev.next = current.next;
+        current=current.next
+      } else{
+      prev=current;
+      current =current.next
+      }
+      if(current.value === k){
+        prev.next=null;
+      }
+    }
+  } 
+  while(l.value === k)l = l.next
+  return l;
 }
 
 module.exports = {
